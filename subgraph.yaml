@@ -19,7 +19,7 @@ dataSources:
         - Metadata
       abis:
         - name: NFTTracking
-          file: ./abis/NFTTracking.json  # ABI file for the smart contract
+          file: ./abis/NFT.json  # ABI file for the smart contract
       eventHandlers:
         - event: Transfer(address,address,uint256)
           handler: handleTransfer
