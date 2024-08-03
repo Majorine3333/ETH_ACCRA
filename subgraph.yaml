@@ -1,0 +1,28 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: NFTTracking
+    network: mainnet
+    source:
+      address: 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4  # Replace with your deployed contract address
+      abi: NFTTracking
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Account
+        - NFT
+        - Transfer
+        - Metadata
+      abis:
+        - name: NFTTracking
+          file: ./abis/NFTTracking.json  # ABI file for the smart contract
+      eventHandlers:
+        - event: Transfer(address,address,uint256)
+          handler: handleTransfer
+        - event: MetadataUpdate(uint256,string)
+          handler: handleMetadataUpdate
+      file: ./src/mapping.ts
